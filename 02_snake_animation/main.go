@@ -32,6 +32,27 @@ func newSnake() snake {
 	return snake{coord{5, 5}, coord{1, 0}}
 }
 
+
+
+func step(s snake) snake {
+	x, y := s.pos.x, s.pos.y
+	if x == 5 && y == 8 {
+		s.dir.x = 1
+		s.dir.y = 0
+	} else if x == 30 && y == 8 {
+		s.dir.x = 0
+		s.dir.y = 1
+	} else if x == 30 && y == 13 {
+		s.dir.x = -1
+		s.dir.y = 0
+	} else if x == 5 && y == 13 {
+		s.dir.x = 0
+		s.dir.y = -1
+	}
+	s = moveSnake(s)
+	drawSnake(s)
+	return s
+
 // Redraws the terminal.
 func drawSnake(s snake) {
 	termbox.Clear(snakeFgColor, snakeBgColor)
